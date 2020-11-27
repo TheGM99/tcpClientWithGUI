@@ -34,6 +34,10 @@ namespace tcpLogin_Client_LIB
             return Client.ReadFromStream(stream);
         }
 
-        
+        public static void Logout (NetworkStream stream)
+        {
+            string dane = "1";
+            Client.WriteToStream(stream, dane);
+        }
     }
 }

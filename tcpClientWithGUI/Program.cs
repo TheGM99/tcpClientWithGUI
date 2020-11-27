@@ -20,7 +20,7 @@ namespace tcpClientWithGUI
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Client client = new Client(IPAddress.Parse("127.0.0.1"), 2048);
+            Client client = new Client(IPAddress.Parse("127.0.0.1"), 6000);
             Application.Run(new LoginForm(Client.Stream));
         }
     }
