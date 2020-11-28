@@ -18,19 +18,14 @@ namespace tcpLogin_Client_LIB
         IPAddress iPAddress;
 
         static NetworkStream stream;
-        public Client(IPAddress IP, int port)
-        {
-
-            IPEndPoint ipEndPoint = new IPEndPoint(IP, port);
-            
-
-            tcpClient.Connect(ipEndPoint);
-            running = true;
-            stream = tcpClient.GetStream();
+        public Client()
+        {                            
+                     
         }
  
-        public static NetworkStream Stream { get => stream;
-        }
+        public static NetworkStream Stream { get => stream;}
+
+        public static TcpClient TcpClient { get => tcpClient; }
         public static void WriteToStream(NetworkStream stream, string dane)
         {
             byte[] writebuffer = new byte[Buffer_size];
@@ -52,7 +47,12 @@ namespace tcpLogin_Client_LIB
 
         }
 
-
+        public static void connect(IPAddress IP, int port)
+        {
+            IPEndPoint temp = new IPEndPoint(IP,port);
+            tcpClient.Connect(temp);
+            stream = tcpClient.GetStream();
+        }
         public static int Buffer_size
         {
             get => buffer_size; set
