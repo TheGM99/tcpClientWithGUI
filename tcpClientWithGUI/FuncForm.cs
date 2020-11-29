@@ -21,12 +21,17 @@ namespace tcpClientWithGUI
             _stream = stream;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Funkcja dla przycisku "Do Nothing"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Nothing_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Nothing was done.");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void LogOut_Click(object sender, EventArgs e)
         {
             this.Hide();
             Operations.Logout(_stream);

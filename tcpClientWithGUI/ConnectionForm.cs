@@ -20,7 +20,12 @@ namespace tcpClientWithGUI
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        /// <summary>
+        /// funkcja nawiązująca połączenie, uruchamiająca się po naciśnięciu odpowiedniego przycisku
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Connection_Click(object sender, EventArgs e)
         {
             try
             {
@@ -30,11 +35,6 @@ namespace tcpClientWithGUI
                 lf.Show();
             }
             catch (Exception er) { Console.WriteLine(er); }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

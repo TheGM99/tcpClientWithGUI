@@ -23,6 +23,11 @@ namespace tcpClientWithGUI
             InitializeComponent();
         }
 
+        /// <summary>
+        /// funkcja logowania uruchamiająca się po naciśnięciu odpowiedniego przycisku
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Login_Click(object sender, EventArgs e)
         {
 
@@ -38,6 +43,11 @@ namespace tcpClientWithGUI
             else { MessageBox.Show("Wrong username or password.");}
         }
 
+        /// <summary>
+        /// funkcja rejestracji uruchamiająca się po naciśnięciu odpowiedniego przycisku
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Register_Click(object sender, EventArgs e)
         {
             StringBuilder readable = Operations.Register(_stream, userTextBox.Text, passTextBox.Text);
@@ -46,21 +56,6 @@ namespace tcpClientWithGUI
                 MessageBox.Show("Registration Succesful. You can now login.");
             }
             else MessageBox.Show("This user already exists!");
-        }
-
-            private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
       
     }

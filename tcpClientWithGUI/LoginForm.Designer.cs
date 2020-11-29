@@ -52,7 +52,6 @@
             this.userTextBox.Name = "userTextBox";
             this.userTextBox.Size = new System.Drawing.Size(355, 27);
             this.userTextBox.TabIndex = 2;
-            this.userTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // passTextBox
             // 
@@ -70,7 +69,6 @@
             this.label1.Size = new System.Drawing.Size(75, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "Username";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -80,19 +78,18 @@
             this.label2.Size = new System.Drawing.Size(70, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "Password";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(467, 205);
-            this.button1.Name = "regButton";
+            this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 29);
             this.button1.TabIndex = 6;
             this.button1.Text = "Register";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Register_Click);
             // 
-            // Form1
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -103,7 +100,7 @@
             this.Controls.Add(this.passTextBox);
             this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.loginButt);
-            this.Name = "Form1";
+            this.Name = "LoginForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
             this.PerformLayout();

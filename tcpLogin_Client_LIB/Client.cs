@@ -26,6 +26,12 @@ namespace tcpLogin_Client_LIB
         public static NetworkStream Stream { get => stream;}
 
         public static TcpClient TcpClient { get => tcpClient; }
+
+        /// <summary>
+        /// funkcja wysylania wiadomosci do serwera
+        /// </summary>
+        /// <param name="stream">strumień połączenia z serwerem</param>
+        /// <param name="dane"> przesyłane dane</param>
         public static void WriteToStream(NetworkStream stream, string dane)
         {
             byte[] writebuffer = new byte[Buffer_size];
@@ -33,6 +39,11 @@ namespace tcpLogin_Client_LIB
             stream.Write(writebuffer, 0, writebuffer.Length);
         }
 
+        /// <summary>
+        /// funkcja odbierania informacji z serwera
+        /// </summary>
+        /// <param name="stream">strumień połączenia z serwerem</param>
+        /// <returns>pobrane dane</returns>
         public static StringBuilder ReadFromStream(NetworkStream stream)
         {
             StringBuilder readable = new StringBuilder();
@@ -47,6 +58,11 @@ namespace tcpLogin_Client_LIB
 
         }
 
+        /// <summary>
+        /// funkcja nawiązująca połączenie z serwerem
+        /// </summary>
+        /// <param name="IP">adres ip serwera</param>
+        /// <param name="port">port</param>
         public static void connect(IPAddress IP, int port)
         {
             IPEndPoint temp = new IPEndPoint(IP,port);
@@ -67,13 +83,6 @@ namespace tcpLogin_Client_LIB
 
         }
 
-        protected bool checkPort()
-        {
-
-            if (port < 1024 || port > 49151) return false;
-            return true;
-
-        }
 
         public IPAddress IPAddress { get => iPAddress; set { if (!running) iPAddress = value; else throw new Exception("nie można zmienić adresu IP kiedy serwer jest uruchomiony"); } }
 
@@ -83,19 +92,8 @@ namespace tcpLogin_Client_LIB
 
         public int Port
         {
-            get => port; set
-            {
-                int tmp = port;
-                if (!running) port = value; else throw new Exception("nie można zmienić portu kiedy serwer jest uruchomiony");
-                if (!checkPort())
-                {
-                    port = tmp;
-                    throw new Exception("błędna wartość portu");
-                }
-
-            }
-
-        }
+            get => port;
+       }
 
     }
 }
