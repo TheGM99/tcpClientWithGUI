@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using tcpLogin_Client_LIB;
@@ -32,6 +33,7 @@ namespace tcpClientWithGUI
             ActiveUsersBox.Items.AddRange(ActiveUsers);
             UpdateLogsUsers();
             listening = Task.Run(() => Listener());
+            Task.Run(() => refresh());
             UserLabel.Text = Login;
             User = Login;
         }
@@ -50,10 +52,13 @@ namespace tcpClientWithGUI
             otherform.Show();
         }
 
-        private void RefreshButton_Click(object sender, EventArgs e)
+        private void refresh()
         {
-            Client.WriteToStream(_stream, "%refresh%");
-           
+            while (running)
+            {
+                Client.WriteToStream(_stream, "%refresh%");
+                Thread.Sleep(1500);
+            }
         }
 
         private void textSender_KeyDown(object sender, KeyEventArgs e)
@@ -107,6 +112,13 @@ namespace tcpClientWithGUI
                         break;
                 }
             }
+        }
+
+        private void ActiveUsersBox_Click(object sender, EventArgs e)
+        {
+            MessageBox.Clear();
+            MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
+            CurrentUser = ActiveUsersBox.SelectedItem.ToString();
         }
     }
 }
