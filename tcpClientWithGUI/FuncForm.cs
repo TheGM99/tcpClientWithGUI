@@ -49,7 +49,6 @@ namespace tcpClientWithGUI
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             Client.WriteToStream(_stream, "%refresh%");
-            UpdateLogsUsers();
            
         }
 
@@ -90,6 +89,7 @@ namespace tcpClientWithGUI
                         ActiveUsers = Client.ReadFromStream(_stream).ToString().Split(new char[] { ',' });
                         ActiveUsersBox.Items.Clear();
                         ActiveUsersBox.Items.AddRange(ActiveUsers);
+                        UpdateLogsUsers();
                         break;
                     default:
                         String[] splitter = Message.Split(new char[] { '%' });
