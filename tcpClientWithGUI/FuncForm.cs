@@ -97,8 +97,8 @@ namespace tcpClientWithGUI
                     default:
                         String[] splitter = Message.Split(new char[] { '%' });
                         String temp = MessageBox.Text;
-                        Message.Replace('%', ':');
-                        temp += "\r\n" + Message ;
+                        Message = Message.Replace('%', ':');
+                        temp += Message + "\r\n";
                         ChatLog[splitter[0]] += temp;                     
                         if(CurrentUser == splitter[0])
                         MessageBox.Text = temp;
