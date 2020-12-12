@@ -36,7 +36,7 @@ namespace tcpClientWithGUI
             {
                 MessageBox.Show("Login Succesful.");
                 this.Hide();
-                FuncForm ff = new FuncForm(this, _stream);
+                FuncForm ff = new FuncForm(this, _stream, userTextBox.Text);
                 ff.Show();
 
             }

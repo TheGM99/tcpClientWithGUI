@@ -18,10 +18,11 @@ namespace tcpClientWithGUI
         NetworkStream _stream;
         String[] ActiveUsers;
         String CurrentUser;
+        String User;
         Dictionary<String, String> ChatLog = new Dictionary<string, string>();
         Task listening;
         bool running = true;
-        public FuncForm(Form form, NetworkStream stream)
+        public FuncForm(Form form, NetworkStream stream, String Login)
         {
             InitializeComponent();
             otherform = form;
@@ -30,6 +31,8 @@ namespace tcpClientWithGUI
             ActiveUsersBox.Items.AddRange(ActiveUsers);
             UpdateLogsUsers();
             listening = Task.Run(() => Listener());
+            UserLabel.Text = Login;
+            User = Login;
         }
 
         /// <summary>
@@ -56,9 +59,9 @@ namespace tcpClientWithGUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Client.WriteToStream(_stream,CurrentUser + "%" + textSender.Text);
+                Client.WriteToStream(_stream,CurrentUser + "% " + textSender.Text);
                 String temp = MessageBox.Text;
-                temp += "\n" + textSender.Text;
+                temp += "\r\n" + User + ": " + textSender.Text;
                 MessageBox.Text = temp;
                 textSender.Clear();
             }
@@ -94,8 +97,9 @@ namespace tcpClientWithGUI
                     default:
                         String[] splitter = Message.Split(new char[] { '%' });
                         String temp = MessageBox.Text;
-                        temp += "\n" + Message;
-                        ChatLog[splitter[0]] += temp; 
+                        Message.Replace('%', ':');
+                        temp += "\r\n" + Message ;
+                        ChatLog[splitter[0]] += temp;                     
                         if(CurrentUser == splitter[0])
                         MessageBox.Text = temp;
                         break;

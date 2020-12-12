@@ -35,6 +35,8 @@ namespace tcpClientWithGUI
             this.MessageBox = new System.Windows.Forms.TextBox();
             this.ActiveUsersBox = new System.Windows.Forms.ListBox();
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.UserLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button2
@@ -93,11 +95,31 @@ namespace tcpClientWithGUI
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(784, 102);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(126, 20);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Zalogowany jako:";
+            // 
+            // UserLabel
+            // 
+            this.UserLabel.AutoSize = true;
+            this.UserLabel.Location = new System.Drawing.Point(818, 134);
+            this.UserLabel.Name = "UserLabel";
+            this.UserLabel.Size = new System.Drawing.Size(50, 20);
+            this.UserLabel.TabIndex = 9;
+            this.UserLabel.Text = "label3";
+            // 
             // FuncForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 460);
+            this.Controls.Add(this.UserLabel);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.ActiveUsersBox);
             this.Controls.Add(this.MessageBox);
@@ -118,5 +140,7 @@ namespace tcpClientWithGUI
         private System.Windows.Forms.TextBox MessageBox;
         private System.Windows.Forms.ListBox ActiveUsersBox;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label UserLabel;
     }
 }
