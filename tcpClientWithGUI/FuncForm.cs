@@ -22,6 +22,7 @@ namespace tcpClientWithGUI
         Dictionary<String, String> ChatLog = new Dictionary<string, string>();
         Task listening;
         bool running = true;
+
         public FuncForm(Form form, NetworkStream stream, String Login)
         {
             InitializeComponent();
@@ -61,8 +62,9 @@ namespace tcpClientWithGUI
             {
                 Client.WriteToStream(_stream,CurrentUser + "% " + textSender.Text);
                 String temp = MessageBox.Text;
-                temp += "\r\n" + User + ": " + textSender.Text;
+                temp +=  User + ": " + textSender.Text + "\r\n";
                 MessageBox.Text = temp;
+                ChatLog[CurrentUser] = temp;
                 textSender.Clear();
             }
         }
