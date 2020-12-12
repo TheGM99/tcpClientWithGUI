@@ -53,7 +53,7 @@ namespace tcpLogin_Client_LIB
         /// <param name="stream">strumień połączenia z użytkownikiem</param>
         public static void Logout (NetworkStream stream)
         {
-            string dane = "1";
+            string dane = "%logout%";
             Client.WriteToStream(stream, dane);
         }
     }

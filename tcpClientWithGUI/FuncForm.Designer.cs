@@ -29,23 +29,17 @@ namespace tcpClientWithGUI
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.textSender = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MessageBox = new System.Windows.Forms.TextBox();
+            this.ActiveUsersBox = new System.Windows.Forms.ListBox();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(315, 97);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 89);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Do Nothing";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Nothing_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(315, 192);
+            this.button2.Location = new System.Drawing.Point(763, 24);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(167, 59);
             this.button2.TabIndex = 1;
@@ -53,22 +47,76 @@ namespace tcpClientWithGUI
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.LogOut_Click);
             // 
+            // textSender
+            // 
+            this.textSender.Location = new System.Drawing.Point(303, 408);
+            this.textSender.Name = "textSender";
+            this.textSender.Size = new System.Drawing.Size(452, 27);
+            this.textSender.TabIndex = 2;
+            this.textSender.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textSender_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(212, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Lista Aktywnych Użytkowników";
+            // 
+            // MessageBox
+            // 
+            this.MessageBox.Location = new System.Drawing.Point(303, 25);
+            this.MessageBox.Multiline = true;
+            this.MessageBox.Name = "MessageBox";
+            this.MessageBox.ReadOnly = true;
+            this.MessageBox.Size = new System.Drawing.Size(452, 355);
+            this.MessageBox.TabIndex = 5;
+            // 
+            // ActiveUsersBox
+            // 
+            this.ActiveUsersBox.FormattingEnabled = true;
+            this.ActiveUsersBox.ItemHeight = 20;
+            this.ActiveUsersBox.Location = new System.Drawing.Point(8, 35);
+            this.ActiveUsersBox.Name = "ActiveUsersBox";
+            this.ActiveUsersBox.Size = new System.Drawing.Size(280, 344);
+            this.ActiveUsersBox.TabIndex = 6;
+            this.ActiveUsersBox.DoubleClick += new System.EventHandler(this.ActiveUsersBox_DoubleClick);
+            // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(13, 399);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(256, 36);
+            this.RefreshButton.TabIndex = 7;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
             // FuncForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(942, 460);
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.ActiveUsersBox);
+            this.Controls.Add(this.MessageBox);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textSender);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
             this.Name = "FuncForm";
             this.Text = "FuncForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textSender;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox MessageBox;
+        private System.Windows.Forms.ListBox ActiveUsersBox;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }

@@ -40,6 +40,10 @@ namespace tcpClientWithGUI
                 ff.Show();
 
             }
+            else if (readable[0] == '2')
+            {
+                MessageBox.Show(" Someone is already logged in");
+            }
             else { MessageBox.Show("Wrong username or password.");}
         }
 
