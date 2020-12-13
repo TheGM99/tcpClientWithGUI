@@ -36,6 +36,7 @@ namespace tcpClientWithGUI
             this.ActiveUsersBox = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -80,7 +81,7 @@ namespace tcpClientWithGUI
             this.ActiveUsersBox.ItemHeight = 20;
             this.ActiveUsersBox.Location = new System.Drawing.Point(8, 35);
             this.ActiveUsersBox.Name = "ActiveUsersBox";
-            this.ActiveUsersBox.Size = new System.Drawing.Size(280, 404);
+            this.ActiveUsersBox.Size = new System.Drawing.Size(280, 344);
             this.ActiveUsersBox.TabIndex = 6;
             this.ActiveUsersBox.Click += new System.EventHandler(this.ActiveUsersBox_Click);
             this.ActiveUsersBox.DoubleClick += new System.EventHandler(this.ActiveUsersBox_DoubleClick);
@@ -103,11 +104,22 @@ namespace tcpClientWithGUI
             this.UserLabel.TabIndex = 9;
             this.UserLabel.Text = "label3";
             // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(13, 385);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(275, 49);
+            this.RefreshButton.TabIndex = 10;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
             // FuncForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 460);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ActiveUsersBox);
@@ -130,5 +142,6 @@ namespace tcpClientWithGUI
         private System.Windows.Forms.ListBox ActiveUsersBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label UserLabel;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }

@@ -33,7 +33,6 @@ namespace tcpClientWithGUI
             ActiveUsersBox.Items.AddRange(ActiveUsers);
             UpdateLogsUsers();
             listening = Task.Run(() => Listener());
-            Task.Run(() => refresh());
             UserLabel.Text = Login;
             User = Login;
         }
@@ -52,14 +51,6 @@ namespace tcpClientWithGUI
             otherform.Show();
         }
 
-        private void refresh()
-        {
-            while (running)
-            {
-                Client.WriteToStream(_stream, "%refresh%");
-                Thread.Sleep(1500);
-            }
-        }
 
         private void textSender_KeyDown(object sender, KeyEventArgs e)
         {
@@ -119,6 +110,11 @@ namespace tcpClientWithGUI
             MessageBox.Clear();
             MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
             CurrentUser = ActiveUsersBox.SelectedItem.ToString();
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            Client.WriteToStream(_stream, "%refresh%");
         }
     }
 }
