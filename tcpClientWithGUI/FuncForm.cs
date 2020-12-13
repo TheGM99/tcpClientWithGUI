@@ -13,6 +13,9 @@ using tcpLogin_Client_LIB;
 
 namespace tcpClientWithGUI
 {
+
+    //TODO
+    //MAhe ChatLog Work
     public partial class FuncForm : Form
     {
         Form otherform;
@@ -20,7 +23,7 @@ namespace tcpClientWithGUI
         String[] ActiveUsers;
         String CurrentUser;
         String User;
-        Dictionary<String, String> ChatLog = new Dictionary<string, string>();
+       // Dictionary<String, String> ChatLog = new Dictionary<string, string>(); WIP
         Task listening;
         bool running = true;
 
@@ -31,7 +34,7 @@ namespace tcpClientWithGUI
             _stream = stream;
             ActiveUsers = Client.ReadFromStream(stream).ToString().Split(new char[] {','});
             ActiveUsersBox.Items.AddRange(ActiveUsers);
-            UpdateLogsUsers();
+           // UpdateLogsUsers();
             listening = Task.Run(() => Listener());
             UserLabel.Text = Login;
             User = Login;
@@ -60,19 +63,19 @@ namespace tcpClientWithGUI
                 String temp = MessageBox.Text;
                 temp +=  User + ": " + textSender.Text + "\r\n";
                 MessageBox.Text = temp;
-                ChatLog[CurrentUser] = temp;
+              //  ChatLog[CurrentUser] = temp;
                 textSender.Clear();
             }
         }
 
-        private void UpdateLogsUsers()
+       /* private void UpdateLogsUsers()
         {
             foreach(String user in ActiveUsers)
             {
                 if (!ChatLog.ContainsKey(user))
                     ChatLog.Add(user, "");
             }
-        }
+        }*/
         private void Listener()
         {           
             while (running)
@@ -84,14 +87,14 @@ namespace tcpClientWithGUI
                         ActiveUsers = Client.ReadFromStream(_stream).ToString().Split(new char[] { ',' });
                         ActiveUsersBox.Items.Clear();
                         ActiveUsersBox.Items.AddRange(ActiveUsers);
-                        UpdateLogsUsers();
+                      //  UpdateLogsUsers();
                         break;
                     default:
                         String[] splitter = Message.Split(new char[] { '%' });
                         String temp = MessageBox.Text;
                         Message = Message.Replace('%', ':');
                         temp += Message + "\r\n";
-                        ChatLog[splitter[0]] += temp;                     
+                       // ChatLog[splitter[0]] += temp;                     
                         if(CurrentUser == splitter[0])
                         MessageBox.Text = temp;
                         break;
@@ -101,12 +104,14 @@ namespace tcpClientWithGUI
 
         private void ActiveUsersBox_Click(object sender, EventArgs e)
         {
-            if (ChatLog.ContainsKey(ActiveUsersBox.SelectedItem.ToString()))
+            var test = Array.Find(ActiveUsers, ele => ele == ActiveUsersBox.SelectedItem.ToString());
+            if (test != null)
             {
                 MessageBox.Clear();
-                MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
+                //MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
                 CurrentUser = ActiveUsersBox.SelectedItem.ToString();
             }
+          
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
