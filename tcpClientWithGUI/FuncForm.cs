@@ -65,12 +65,6 @@ namespace tcpClientWithGUI
             }
         }
 
-        private void ActiveUsersBox_DoubleClick(object sender, EventArgs e)
-        {
-            MessageBox.Clear();
-            MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
-            CurrentUser = ActiveUsersBox.SelectedItem.ToString();
-        }
         private void UpdateLogsUsers()
         {
             foreach(String user in ActiveUsers)
@@ -107,9 +101,12 @@ namespace tcpClientWithGUI
 
         private void ActiveUsersBox_Click(object sender, EventArgs e)
         {
-            MessageBox.Clear();
-            MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
-            CurrentUser = ActiveUsersBox.SelectedItem.ToString();
+            if (ChatLog.ContainsKey(ActiveUsersBox.SelectedItem.ToString()))
+            {
+                MessageBox.Clear();
+                MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
+                CurrentUser = ActiveUsersBox.SelectedItem.ToString();
+            }
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)

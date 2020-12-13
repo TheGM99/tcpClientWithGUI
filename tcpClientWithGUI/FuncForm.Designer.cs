@@ -84,7 +84,6 @@ namespace tcpClientWithGUI
             this.ActiveUsersBox.Size = new System.Drawing.Size(280, 344);
             this.ActiveUsersBox.TabIndex = 6;
             this.ActiveUsersBox.Click += new System.EventHandler(this.ActiveUsersBox_Click);
-            this.ActiveUsersBox.DoubleClick += new System.EventHandler(this.ActiveUsersBox_DoubleClick);
             // 
             // label2
             // 
