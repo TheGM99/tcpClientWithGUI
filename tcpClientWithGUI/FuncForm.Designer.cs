@@ -37,6 +37,7 @@ namespace tcpClientWithGUI
             this.label2 = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
             this.RefreshButton = new System.Windows.Forms.Button();
+            this.ChangeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button2
@@ -88,7 +89,7 @@ namespace tcpClientWithGUI
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(784, 102);
+            this.label2.Location = new System.Drawing.Point(784, 169);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(126, 20);
             this.label2.TabIndex = 8;
@@ -97,7 +98,7 @@ namespace tcpClientWithGUI
             // UserLabel
             // 
             this.UserLabel.AutoSize = true;
-            this.UserLabel.Location = new System.Drawing.Point(818, 134);
+            this.UserLabel.Location = new System.Drawing.Point(818, 192);
             this.UserLabel.Name = "UserLabel";
             this.UserLabel.Size = new System.Drawing.Size(50, 20);
             this.UserLabel.TabIndex = 9;
@@ -113,11 +114,22 @@ namespace tcpClientWithGUI
             this.RefreshButton.UseVisualStyleBackColor = true;
             this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
+            // ChangeButton
+            // 
+            this.ChangeButton.Location = new System.Drawing.Point(763, 87);
+            this.ChangeButton.Name = "ChangeButton";
+            this.ChangeButton.Size = new System.Drawing.Size(166, 62);
+            this.ChangeButton.TabIndex = 11;
+            this.ChangeButton.Text = "Change Password";
+            this.ChangeButton.UseVisualStyleBackColor = true;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
+            // 
             // FuncForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 460);
+            this.Controls.Add(this.ChangeButton);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.label2);
@@ -127,7 +139,7 @@ namespace tcpClientWithGUI
             this.Controls.Add(this.textSender);
             this.Controls.Add(this.button2);
             this.Name = "FuncForm";
-            this.Text = "FuncForm";
+            this.Text = "Functions";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +154,6 @@ namespace tcpClientWithGUI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label UserLabel;
         private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.Button ChangeButton;
     }
 }

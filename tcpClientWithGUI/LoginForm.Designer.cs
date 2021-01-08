@@ -101,7 +101,7 @@
             this.Controls.Add(this.userTextBox);
             this.Controls.Add(this.loginButt);
             this.Name = "LoginForm";
-            this.Text = "Form1";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

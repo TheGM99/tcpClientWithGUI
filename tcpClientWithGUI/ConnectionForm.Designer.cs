@@ -91,7 +91,7 @@ namespace tcpClientWithGUI
             this.Controls.Add(this.ipBox);
             this.Controls.Add(this.button1);
             this.Name = "ConnectionForm";
-            this.Text = "ConnectionForm";
+            this.Text = "Connection";
             this.ResumeLayout(false);
             this.PerformLayout();
 

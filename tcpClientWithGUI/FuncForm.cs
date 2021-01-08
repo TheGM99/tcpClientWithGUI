@@ -118,5 +118,11 @@ namespace tcpClientWithGUI
         {
             Client.WriteToStream(_stream, "%refresh%");
         }
+
+        private void ChangeButton_Click(object sender, EventArgs e)
+        {
+            ChangePasswordForm CPF = new ChangePasswordForm(_stream);
+            CPF.Show();           
+        }
     }
 }
