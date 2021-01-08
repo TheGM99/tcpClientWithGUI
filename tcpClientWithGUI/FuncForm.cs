@@ -60,9 +60,9 @@ namespace tcpClientWithGUI
             if (e.KeyCode == Keys.Enter)
             {
                 Client.WriteToStream(_stream,CurrentUser + "% " + textSender.Text);
-                String temp = MessageBox.Text;
+                String temp = MessBox.Text;
                 temp +=  User + ": " + textSender.Text + "\r\n";
-                MessageBox.Text = temp;
+                MessBox.Text = temp;
               //  ChatLog[CurrentUser] = temp;
                 textSender.Clear();
             }
@@ -89,14 +89,20 @@ namespace tcpClientWithGUI
                         ActiveUsersBox.Items.AddRange(ActiveUsers);
                       //  UpdateLogsUsers();
                         break;
+                    case "1":
+                        MessageBox.Show("Change was succesful.");
+                        break;
+                    case "0":
+                        MessageBox.Show("Change was unsuccesful.");
+                        break;
                     default:
                         String[] splitter = Message.Split(new char[] { '%' });
-                        String temp = MessageBox.Text;
+                        String temp = MessBox.Text;
                         Message = Message.Replace('%', ':');
                         temp += Message + "\r\n";
                        // ChatLog[splitter[0]] += temp;                     
                         if(CurrentUser == splitter[0])
-                        MessageBox.Text = temp;
+                        MessBox.Text = temp;
                         break;
                 }
             }
@@ -107,7 +113,7 @@ namespace tcpClientWithGUI
             var test = Array.Find(ActiveUsers, ele => ele == ActiveUsersBox.SelectedItem.ToString());
             if (test != null)
             {
-                MessageBox.Clear();
+                MessBox.Clear();
                 //MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
                 CurrentUser = ActiveUsersBox.SelectedItem.ToString();
             }

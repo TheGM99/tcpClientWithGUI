@@ -13,6 +13,7 @@ namespace tcpClientWithGUI
 {
     public partial class ChangePasswordForm : Form
     {
+
         NetworkStream _stream;
         public ChangePasswordForm(NetworkStream stream)
         {
@@ -29,12 +30,9 @@ namespace tcpClientWithGUI
             }
             else
             {
-                MessageBox.Show(" Passwords dont match !");
+                MessageBox.Show(" Passwords don't match !");
                 return;
             }
-            StringBuilder ans = Client.ReadFromStream(_stream);
-            if (ans[0] == '1') MessageBox.Show("Change was succesful.");
-            else MessageBox.Show("Change was unsuccesful.");
         }
     }
 }

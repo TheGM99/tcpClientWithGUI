@@ -32,7 +32,7 @@ namespace tcpClientWithGUI
             this.button2 = new System.Windows.Forms.Button();
             this.textSender = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.MessageBox = new System.Windows.Forms.TextBox();
+            this.MessBox = new System.Windows.Forms.TextBox();
             this.ActiveUsersBox = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.UserLabel = new System.Windows.Forms.Label();
@@ -67,14 +67,14 @@ namespace tcpClientWithGUI
             this.label1.TabIndex = 4;
             this.label1.Text = "Lista Aktywnych Użytkowników";
             // 
-            // MessageBox
+            // MessBox
             // 
-            this.MessageBox.Location = new System.Drawing.Point(303, 25);
-            this.MessageBox.Multiline = true;
-            this.MessageBox.Name = "MessageBox";
-            this.MessageBox.ReadOnly = true;
-            this.MessageBox.Size = new System.Drawing.Size(452, 355);
-            this.MessageBox.TabIndex = 5;
+            this.MessBox.Location = new System.Drawing.Point(303, 25);
+            this.MessBox.Multiline = true;
+            this.MessBox.Name = "MessBox";
+            this.MessBox.ReadOnly = true;
+            this.MessBox.Size = new System.Drawing.Size(452, 355);
+            this.MessBox.TabIndex = 5;
             // 
             // ActiveUsersBox
             // 
@@ -134,7 +134,7 @@ namespace tcpClientWithGUI
             this.Controls.Add(this.UserLabel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.ActiveUsersBox);
-            this.Controls.Add(this.MessageBox);
+            this.Controls.Add(this.MessBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textSender);
             this.Controls.Add(this.button2);
@@ -149,7 +149,7 @@ namespace tcpClientWithGUI
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textSender;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox MessageBox;
+        private System.Windows.Forms.TextBox MessBox;
         private System.Windows.Forms.ListBox ActiveUsersBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label UserLabel;
