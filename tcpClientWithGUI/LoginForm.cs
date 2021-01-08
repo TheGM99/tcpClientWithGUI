@@ -30,10 +30,16 @@ namespace tcpClientWithGUI
         /// <param name="e"></param>
         private void Login_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(userTextBox.Text))
+            {
+                MessageBox.Show("Input userename and/or password!");
+                return;
+            }
 
             StringBuilder readable = Operations.Login(_stream, userTextBox.Text, passTextBox.Text);
             if (readable[0] == '1')
             {
+              
                 MessageBox.Show("Login Succesful.");
                 this.Hide();
                 FuncForm ff = new FuncForm(this, _stream, userTextBox.Text);
@@ -54,6 +60,12 @@ namespace tcpClientWithGUI
         /// <param name="e"></param>
         private void Register_Click(object sender, EventArgs e)
         {
+            if (String.IsNullOrEmpty(userTextBox.Text))
+            {
+                MessageBox.Show("Input userename and/or password!");
+                return;
+            }
+
             StringBuilder readable = Operations.Register(_stream, userTextBox.Text, passTextBox.Text);
             if (readable[0] == '1')
             {
