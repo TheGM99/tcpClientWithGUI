@@ -14,16 +14,15 @@ using tcpLogin_Client_LIB;
 namespace tcpClientWithGUI
 {
 
-    //TODO
-    //MAhe ChatLog Work
     public partial class FuncForm : Form
     {
         Form otherform;
+        ChangePasswordForm CPF;
         NetworkStream _stream;
         String[] ActiveUsers;
         String CurrentUser;
         String User;
-        Dictionary<String, String> ChatLog = new Dictionary<string, string>(); //WIP
+        Dictionary<String, String> ChatLog = new Dictionary<string, string>();
         Task listening;
         bool running = true;
 
@@ -32,6 +31,7 @@ namespace tcpClientWithGUI
             InitializeComponent();
             otherform = form;
             _stream = stream;
+            CPF = new ChangePasswordForm(_stream);
             ActiveUsers = Client.ReadFromStream(stream).ToString().Split(new char[] {','});
             ActiveUsersBox.Items.AddRange(ActiveUsers);
             UpdateLogsUsers();
@@ -49,7 +49,11 @@ namespace tcpClientWithGUI
             otherform.Show();
         }
 
-
+        /// <summary>
+        /// Funkcja odpowiedzialna za wyslanie wiadmosoci z textboxa "textSender" po nacisnieciu enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textSender_KeyDown(object sender, KeyEventArgs e)
         {
            
@@ -100,21 +104,26 @@ namespace tcpClientWithGUI
                         break;
                     case "1":
                         MessageBox.Show("Change was succesful.");
+                        this.Invoke(new MethodInvoker(delegate ()
+                        {
+                            CPF.Hide();
+                        }));                   
                         break;
                     case "0":
                         MessageBox.Show("Change was unsuccesful.");
                         break;
+                    case "udalosiealepocichu":
+                        break;
                     default:
                             String[] splitter = Message.Split(new char[] { '%' });
-                            String temp = MessBox.Text;
                             Message = Message.Replace('%', ':');
-                            temp += Message + "\r\n";
+                            String temp = Message + "\r\n";
                             ChatLog[splitter[0]] += temp;
                         if (CurrentUser == splitter[0])
                             if (MessBox.InvokeRequired)
                                 this.Invoke(new MethodInvoker(delegate ()
                             {
-                                MessBox.Text = temp;
+                                MessBox.Text = ChatLog[splitter[0]];
                             }));
                         break;
                 }
@@ -140,14 +149,18 @@ namespace tcpClientWithGUI
             }
         }
 
+        /// <summary>
+        /// Funkcja sluzaca do wyslania komunikatu do serwera z prosba o liste aktywnych uzytkownikow
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             Client.WriteToStream(_stream, "%refresh%");
         }
 
         private void ChangeButton_Click(object sender, EventArgs e)
-        {
-            ChangePasswordForm CPF = new ChangePasswordForm(_stream);
+        {          
             CPF.Show();           
         }
     }

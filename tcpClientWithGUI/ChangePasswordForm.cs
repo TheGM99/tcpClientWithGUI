@@ -31,8 +31,9 @@ namespace tcpClientWithGUI
             else
             {
                 MessageBox.Show(" Passwords don't match !");
-                return;
             }
+            PasswordBox1.Clear();
+            PasswordBox2.Clear();
         }
     }
 }
