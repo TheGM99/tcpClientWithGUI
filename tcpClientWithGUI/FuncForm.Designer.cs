@@ -73,6 +73,7 @@ namespace tcpClientWithGUI
             this.MessBox.Multiline = true;
             this.MessBox.Name = "MessBox";
             this.MessBox.ReadOnly = true;
+            this.MessBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.MessBox.Size = new System.Drawing.Size(452, 355);
             this.MessBox.TabIndex = 5;
             // 

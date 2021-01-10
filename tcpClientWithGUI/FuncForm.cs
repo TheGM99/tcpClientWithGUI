@@ -23,7 +23,7 @@ namespace tcpClientWithGUI
         String[] ActiveUsers;
         String CurrentUser;
         String User;
-       // Dictionary<String, String> ChatLog = new Dictionary<string, string>(); WIP
+        Dictionary<String, String> ChatLog = new Dictionary<string, string>(); //WIP
         Task listening;
         bool running = true;
 
@@ -34,17 +34,12 @@ namespace tcpClientWithGUI
             _stream = stream;
             ActiveUsers = Client.ReadFromStream(stream).ToString().Split(new char[] {','});
             ActiveUsersBox.Items.AddRange(ActiveUsers);
-           // UpdateLogsUsers();
+            UpdateLogsUsers();
             listening = Task.Run(() => Listener());
             UserLabel.Text = Login;
             User = Login;
         }
 
-        /// <summary>
-        /// Funkcja dla przycisku "Do Nothing"
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
         private void LogOut_Click(object sender, EventArgs e)
         {
@@ -57,25 +52,33 @@ namespace tcpClientWithGUI
 
         private void textSender_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+           
+            if (e.KeyCode == Keys.Enter && ActiveUsersBox.SelectedItem != null)
             {
                 Client.WriteToStream(_stream,CurrentUser + "% " + textSender.Text);
                 String temp = MessBox.Text;
                 temp +=  User + ": " + textSender.Text + "\r\n";
                 MessBox.Text = temp;
-              //  ChatLog[CurrentUser] = temp;
+                ChatLog[CurrentUser] = MessBox.Text;
                 textSender.Clear();
             }
         }
-
-       /* private void UpdateLogsUsers()
+        
+        /// <summary>
+        /// Funkcja aktualizujaca ChatLog o nowych użytkowników, którzy dołączyli do Chatu.
+        /// </summary>
+        private void UpdateLogsUsers()
         {
             foreach(String user in ActiveUsers)
             {
                 if (!ChatLog.ContainsKey(user))
                     ChatLog.Add(user, "");
             }
-        }*/
+        }
+
+        /// <summary>
+        /// Funkcja odpowiedzialna za odbieranie komunikatów od serwera
+        /// </summary>
         private void Listener()
         {           
             while (running)
@@ -84,10 +87,16 @@ namespace tcpClientWithGUI
                 switch (Message)
                 {
                     case "%lista%":
-                        ActiveUsers = Client.ReadFromStream(_stream).ToString().Split(new char[] { ',' });
-                        ActiveUsersBox.Items.Clear();
-                        ActiveUsersBox.Items.AddRange(ActiveUsers);
-                      //  UpdateLogsUsers();
+                        if (ActiveUsersBox.InvokeRequired)
+                        {
+                            ActiveUsers = Client.ReadFromStream(_stream).ToString().Split(new char[] { ',' });
+                            this.Invoke(new MethodInvoker(delegate ()
+                            {
+                                ActiveUsersBox.Items.Clear();
+                                ActiveUsersBox.Items.AddRange(ActiveUsers);
+                            }));
+                        }
+                            UpdateLogsUsers();
                         break;
                     case "1":
                         MessageBox.Show("Change was succesful.");
@@ -96,28 +105,39 @@ namespace tcpClientWithGUI
                         MessageBox.Show("Change was unsuccesful.");
                         break;
                     default:
-                        String[] splitter = Message.Split(new char[] { '%' });
-                        String temp = MessBox.Text;
-                        Message = Message.Replace('%', ':');
-                        temp += Message + "\r\n";
-                       // ChatLog[splitter[0]] += temp;                     
-                        if(CurrentUser == splitter[0])
-                        MessBox.Text = temp;
+                            String[] splitter = Message.Split(new char[] { '%' });
+                            String temp = MessBox.Text;
+                            Message = Message.Replace('%', ':');
+                            temp += Message + "\r\n";
+                            ChatLog[splitter[0]] += temp;
+                        if (CurrentUser == splitter[0])
+                            if (MessBox.InvokeRequired)
+                                this.Invoke(new MethodInvoker(delegate ()
+                            {
+                                MessBox.Text = temp;
+                            }));
                         break;
                 }
             }
         }
 
+        /// <summary>
+        /// Funkcja ustawiająca uźytkownika do którego aktualnie piszemy i wczytująca popszednie wiadomości
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ActiveUsersBox_Click(object sender, EventArgs e)
         {
-            var test = Array.Find(ActiveUsers, ele => ele == ActiveUsersBox.SelectedItem.ToString());
-            if (test != null)
+            if (ActiveUsersBox.SelectedItem != null)
             {
-                MessBox.Clear();
-                //MessageBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
-                CurrentUser = ActiveUsersBox.SelectedItem.ToString();
+                var test = Array.Find(ActiveUsers, ele => ele == ActiveUsersBox.SelectedItem.ToString());
+                if (!String.IsNullOrEmpty(test))
+                {
+                    MessBox.Clear();
+                    MessBox.Text = ChatLog[ActiveUsersBox.SelectedItem.ToString()];
+                    CurrentUser = ActiveUsersBox.SelectedItem.ToString();
+                }
             }
-          
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
